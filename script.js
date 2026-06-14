@@ -190,33 +190,44 @@ function answeredCount() {
   document.querySelector("#answeredCount").textContent = radios + texts;
 }
 
+function gradeCard(card) {
+  const kind = card.dataset.kind;
+  const index = Number(card.dataset.index);
+  const feedback = card.querySelector(".feedback");
+  let correct = false;
+  let explanation = "";
+
+  if (kind === "multiple" || kind === "image") {
+    const item = kind === "multiple" ? multipleChoice[index] : imageQuestions[index];
+    const selected = card.querySelector('input[type="radio"]:checked');
+    if (!selected) return false;
+
+    correct = Number(selected.value) === item.a;
+    explanation = correct
+      ? `정답입니다. ${item.e}`
+      : `정답은 ${["①", "②", "③", "④"][item.a]} ${item.c[item.a]}입니다. ${item.e}`;
+  } else {
+    const item = shortAnswer[index];
+    const value = card.querySelector(".short-input").value;
+    if (!value.trim()) return false;
+
+    correct = isCorrectText(value, item.a);
+    explanation = correct ? "정답입니다." : `정답: ${item.e}`;
+  }
+
+  card.classList.add("graded");
+  card.classList.toggle("correct", correct);
+  card.classList.toggle("wrong", !correct);
+  feedback.textContent = `${correct ? "정답" : "오답"} · ${explanation}`;
+  return correct;
+}
+
 function grade() {
   let score = 0;
   document.querySelectorAll(".question-card").forEach((card) => {
-    const kind = card.dataset.kind;
-    const index = Number(card.dataset.index);
-    const feedback = card.querySelector(".feedback");
-    let correct = false;
-    let explanation = "";
-
-    if (kind === "multiple" || kind === "image") {
-      const item = kind === "multiple" ? multipleChoice[index] : imageQuestions[index];
-      const selected = card.querySelector('input[type="radio"]:checked');
-      correct = Boolean(selected) && Number(selected.value) === item.a;
-      explanation = `정답 ${["①", "②", "③", "④"][item.a]}. ${item.e}`;
-    } else {
-      const item = shortAnswer[index];
-      correct = isCorrectText(card.querySelector(".short-input").value, item.a);
-      explanation = `정답: ${item.e}`;
-    }
-
-    card.classList.toggle("correct", correct);
-    card.classList.toggle("wrong", !correct);
-    feedback.textContent = `${correct ? "정답" : "오답"} · ${explanation}`;
-    if (correct) score += 1;
+    if (gradeCard(card)) score += 1;
   });
 
-  document.body.classList.add("graded");
   document.querySelector("#scoreCount").textContent = `${score}/${allQuestions.length}`;
   const toast = document.querySelector("#resultToast");
   toast.textContent = `채점 결과 ${score} / ${allQuestions.length}점`;
@@ -243,5 +254,9 @@ document.querySelectorAll(".tab").forEach((tab) => {
 });
 
 document.addEventListener("input", answeredCount);
+document.addEventListener("change", (event) => {
+  if (!event.target.matches('input[type="radio"]')) return;
+  gradeCard(event.target.closest(".question-card"));
+});
 document.querySelector("#gradeButton").addEventListener("click", grade);
 document.querySelector("#printButton").addEventListener("click", () => window.print());
