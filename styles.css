@@ -16,8 +16,8 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--paper);
-  font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
-  line-height: 1.9;
+  font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  line-height: 1.85;
 }
 
 button, input { font: inherit; }
@@ -86,6 +86,29 @@ main {
 .stat span { color: var(--muted); font-size: 12px; }
 .status-band p { margin: 0; padding: 16px 20px; align-self: center; color: var(--muted); font-size: 14px; }
 
+.mode-tabs {
+  display: flex;
+  margin-top: 22px;
+  border-bottom: 2px solid var(--navy);
+}
+
+.mode-tab {
+  min-width: 120px;
+  height: 44px;
+  padding: 0 20px;
+  color: #52606a;
+  background: white;
+  border: 1px solid var(--line);
+  border-bottom: 0;
+  font-weight: 700;
+}
+
+.mode-tab.active {
+  color: white;
+  background: var(--navy);
+  border-color: var(--navy);
+}
+
 .page-tabs {
   display: flex;
   gap: 7px;
@@ -145,10 +168,23 @@ main {
 
 .passage {
   margin: 0;
-  font-family: "Batang", "Nanum Myeongjo", serif;
-  font-size: 17px;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 450;
+  line-height: 2;
   word-break: keep-all;
 }
+
+.study-answer {
+  color: #b12e35;
+  font-weight: 800;
+  background: #fff0f0;
+  border-bottom: 2px solid #d99599;
+  padding: 0 2px;
+}
+
+.study-card .card-header { margin-bottom: 8px; }
+.study-card { border-left-color: var(--gold); }
 
 .blank-input {
   width: var(--input-width, 92px);
@@ -216,7 +252,7 @@ main {
   .stat:nth-child(3) { border-right: 0; }
   .status-band p { grid-column: 1 / -1; border-top: 1px solid var(--line); }
   .paragraph-card { padding: 18px 15px; }
-  .passage { font-size: 16px; word-break: normal; }
+  .passage { font-size: 17px; line-height: 1.95; word-break: normal; }
   .blank-input { max-width: 145px; }
 }
 
