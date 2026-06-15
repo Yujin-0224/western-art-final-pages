@@ -3,46 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>서양미술 기말 대비 문제은행</title>
+  <title>한국정치 기말 빈칸 연습</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="topbar">
     <div>
-      <p class="eyebrow">9주차 이후 · 기말 핵심 범위</p>
-      <h1>서양미술 기말 대비</h1>
+      <p class="eyebrow">교재 지정 페이지 · 문단 빈칸</p>
+      <h1>한국정치 기말 대비</h1>
     </div>
-    <div class="top-actions">
-      <button class="icon-button" id="printButton" title="인쇄">⎙</button>
-      <button class="primary-button" id="gradeButton">채점하기</button>
-    </div>
+    <button class="icon-button" id="printButton" title="인쇄" aria-label="인쇄">⎙</button>
   </header>
 
   <main>
-    <section class="summary-band">
-      <div class="summary-item"><strong id="totalCount">0</strong><span>전체 문제</span></div>
-      <div class="summary-item"><strong id="answeredCount">0</strong><span>푼 문제</span></div>
-      <div class="summary-item"><strong id="scoreCount">-</strong><span>점수</span></div>
-      <div class="priority">
-        <span class="priority-label">최우선</span>
-        신고전주의 · 사실주의 · 인상주의 · 세잔 · 고흐 · 상징주의 · 뭉크 · 클림트 · 마티스 · 피카소 · 몬드리안 · 다다 · 달리 · 리히텐슈타인
-      </div>
+    <section class="status-band">
+      <div class="stat"><strong id="paragraphCount">0</strong><span>전체 문단</span></div>
+      <div class="stat"><strong id="blankCount">0</strong><span>전체 빈칸</span></div>
+      <div class="stat"><strong id="solvedCount">0</strong><span>채점 완료</span></div>
+      <p>교재 문장을 순서대로 복원하세요. 연도는 마지막 자리, 월·일은 숫자만 입력합니다.</p>
     </section>
 
-    <nav class="tabs" aria-label="문제 유형">
-      <button class="tab active" data-section="multiple">객관식 <span id="multipleCount"></span></button>
-      <button class="tab" data-section="short">단답형 <span id="shortCount"></span></button>
-      <button class="tab" data-section="image">작품·작가 객관식 <span id="imageCount"></span></button>
-      <button class="tab" data-section="answers">정답·해설</button>
-    </nav>
-
-    <section id="multiple" class="question-section active"></section>
-    <section id="short" class="question-section"></section>
-    <section id="image" class="question-section"></section>
-    <section id="answers" class="question-section answer-section"></section>
+    <nav class="page-tabs" id="pageTabs" aria-label="교재 페이지"></nav>
+    <section class="quiz-list" id="quizList"></section>
   </main>
 
-  <div class="result-toast" id="resultToast" role="status"></div>
   <script src="script.js"></script>
 </body>
 </html>

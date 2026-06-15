@@ -1,262 +1,267 @@
-const multipleChoice = [
-  { q: "신고전주의가 가장 중요하게 여긴 가치의 조합은?", c: ["감성과 화려함", "이성과 질서", "우연성과 즉흥성", "꿈과 무의식"], a: 1, e: "신고전주의는 감성보다 이성, 화려함보다 절제와 질서를 중시했다." },
-  { q: "신고전주의의 등장 배경으로 보기 어려운 것은?", c: ["로코코 문화에 대한 싫증", "계몽주의의 확산", "로마 시대 유적의 발견", "제1차 세계대전에 대한 반전 운동"], a: 3, e: "제1차 세계대전과 반전 운동은 다다이즘의 배경이다." },
-  { q: "신고전주의 회화의 특징이 아닌 것은?", c: ["매끈한 화면", "직선과 완벽한 비율", "역사와 교훈적 주제", "거칠고 즉흥적인 붓질"], a: 3, e: "신고전주의는 붓자국이 거의 느껴지지 않는 차분하고 매끈한 화면을 선호했다." },
-  { q: "프랑스 신고전주의의 주창자로 필기된 화가는?", c: ["자크 루이 다비드", "구스타브 쿠르베", "클로드 모네", "에드바르 뭉크"], a: 0, e: "자크 루이 다비드는 프랑스 신고전주의를 대표한다." },
-  { q: "‘오달리스크’의 뜻으로 알맞은 것은?", c: ["농촌에서 일하는 여성", "오스만 제국 하렘의 여자 노예", "고대 로마의 여신", "발레 무용수"], a: 1, e: "오달리스크는 오스만 제국 황제의 후궁, 즉 하렘에 거주하던 여자 노예를 뜻한다." },
-  { q: "앵그르의 「오달리스크」에서 두드러지는 표현은?", c: ["인체 비례를 길게 늘임", "농부를 숭엄하게 묘사함", "형태가 대기 속에 녹아듦", "식물의 덩굴무늬를 사용함"], a: 0, e: "신고전주의 화풍을 따르면서 인체의 비례를 의도적으로 길게 늘여 표현했다." },
-  { q: "사실주의에 대한 설명으로 가장 알맞은 것은?", c: ["신화적 과거를 이상화한다", "지금 여기의 현실을 관찰해 표현한다", "무의식의 꿈을 그린다", "색채 자체의 자율성만 탐구한다"], a: 1, e: "사실주의는 신화나 이상화된 과거가 아니라 동시대 현실을 다룬다." },
-  { q: "사실주의 화가들이 주로 선택한 대상이 아닌 것은?", c: ["농부", "도시 노동자", "서민의 일상", "이상화된 고대 영웅"], a: 3, e: "사실주의는 고대 영웅보다 평범한 사람의 삶을 주요 주제로 삼았다." },
-  { q: "사실주의의 특징으로 보기 어려운 것은?", c: ["시각적 진실 추구", "동시대의 현실", "엄숙함과 절제", "과장된 환상과 영웅화"], a: 3, e: "사실주의는 화려하고 과장된 표현을 피했다." },
-  { q: "「오르낭의 매장」을 그린 사실주의 화가는?", c: ["밀레", "쿠르베", "세잔", "다비드"], a: 1, e: "구스타브 쿠르베의 대표작이다." },
-  { q: "다음 중 구스타브 쿠르베의 작품은?", c: ["내 화실의 내부", "기억의 고집", "생의 기쁨", "키스"], a: 0, e: "PDF에는 쿠르베의 「오르낭의 매장」과 「내 화실의 내부」가 정리되어 있다." },
-  { q: "밀레가 농부를 묘사한 방식은?", c: ["우스꽝스럽고 희화적으로", "숭엄하고 강인하게", "기하학적 도형으로", "광고 이미지처럼"], a: 1, e: "밀레는 자연과 농촌의 현실 속 농부를 숭엄하고 강인하게 묘사했다." },
-  { q: "바르비종 유파에 대한 설명으로 알맞은 것은?", c: ["로마 신화와 역사를 주로 그렸다", "자연과 농촌 현실을 사실적으로 그렸다", "빛과 색채의 순간을 포착했다", "식물무늬를 실내 장식에 사용했다"], a: 1, e: "바르비종 유파는 19세기 중반 자연과 농촌 현실을 사실적으로 그린 풍경화 중심의 화가들이다." },
-  { q: "다음 중 밀레의 작품이 아닌 것은?", c: ["만종", "씨뿌리는 사람", "감자 먹는 사람들", "둘 다 농민을 다룬 작품"], a: 2, e: "「감자 먹는 사람들」은 고흐의 초기 작품이다." },
-  { q: "인상주의 회화의 특징이 아닌 것은?", c: ["짧고 물결치는 듯한 붓질", "밝고 찬란한 색채", "순간의 빛 포착", "완벽히 매끈한 표면과 역사적 교훈"], a: 3, e: "매끈한 표면과 역사적 교훈은 신고전주의에 가깝다." },
-  { q: "모네가 끝까지 유지한 인상주의의 핵심 원리는?", c: ["빛은 곧 색채이다", "형태는 원기둥과 구체이다", "예술은 아이디어뿐이다", "이성과 논리를 거부한다"], a: 0, e: "필기에서 모네는 ‘빛 = 색채’ 원리를 유지한 화가로 정리되었다." },
-  { q: "모네의 화풍에 대한 설명으로 알맞은 것은?", c: ["형태가 대기 속에 녹아드는 듯하다", "인체가 길게 늘어난다", "흑백의 덩굴무늬가 중심이다", "대상을 여러 시점으로 분해한다"], a: 0, e: "모네의 대상은 빛과 대기의 변화 속에서 윤곽이 녹아드는 느낌을 준다." },
-  { q: "같은 대상을 시간과 빛에 따라 반복해서 그린 모네의 연작은?", c: ["루앙 대성당 시리즈", "절규 시리즈", "샘 시리즈", "아비뇽 시리즈"], a: 0, e: "루앙 대성당 연작은 변화하는 빛과 색을 탐구한 대표 사례다." },
-  { q: "모네가 후기까지 반복해 그린 대표 소재는?", c: ["수련", "농부", "로마 신화", "식물의 덩굴무늬"], a: 0, e: "모네의 후기 대표 연작은 수련이다." },
-  { q: "후기 인상주의가 추구한 방향은?", c: ["순간 포착보다 견고하고 본질적인 화풍", "고대 로마의 완벽한 비례", "아무 의미도 없는 반이성", "대량소비 이미지의 반복"], a: 0, e: "후기 인상주의는 인상주의의 순간 포착을 넘어 각자의 방식으로 본질과 구조를 추구했다." },
-  { q: "자연을 원기둥·구체·원추형 같은 기하학 구조로 본 화가는?", c: ["세잔", "밀레", "달리", "리히텐슈타인"], a: 0, e: "세잔은 자연의 본질적인 기하학 구조를 고찰했다." },
-  { q: "‘입체주의의 선구자’로 정리된 화가는?", c: ["폴 세잔", "클로드 모네", "구스타프 클림트", "잭슨 폴록"], a: 0, e: "세잔의 구조적 탐구는 입체주의에 큰 영향을 주었다." },
-  { q: "세잔의 대표작으로 PDF에 제시된 것은?", c: ["생 빅투아르 산", "오르낭의 매장", "우는 여자", "넘버 1A"], a: 0, e: "PDF의 세잔 항목에는 「생 빅투아르 산」이 제시되어 있다." },
-  { q: "고흐의 초기 작품과 후기 작품의 변화로 알맞은 것은?", c: ["밝은 색조에서 어두운 색조로", "어두운 노동자 주제에서 밝고 강렬한 색채로", "강렬한 색채에서 매끈하고 절제된 화면으로", "농촌 현실에서 로마 신화 중심으로"], a: 1, e: "초기에는 노동자 계층을 어둡게 그렸고, 이후 밝고 강렬한 색채로 변했다." },
-  { q: "고흐의 화풍 특징이 아닌 것은?", c: ["짧고 소용돌이치는 붓질", "밝은 보색", "강한 리듬감", "차갑고 기계적인 직선만 사용"], a: 3, e: "고흐는 열정적이고 생동감 있는 곡선과 붓질로 리듬감을 만들었다." },
-  { q: "상징주의가 중시한 것은?", c: ["보이는 외관의 정확한 복제", "내면과 감정의 상징적 표현", "고대 영웅의 교훈", "기계 생산의 효율"], a: 1, e: "상징주의는 보이는 것보다 느끼는 것, 설명보다 암시를 중시했다." },
-  { q: "초기 표현주의의 특징으로 알맞은 것은?", c: ["뒤틀린 형태와 강렬한 색채", "정확한 원근과 매끈한 표면", "장식 없는 최소 형태만 사용", "일상용품을 그대로 전시"], a: 0, e: "상징주의의 영향을 받아 내면을 왜곡된 형태와 강렬한 색채로 표현했다." },
-  { q: "다음 중 뭉크의 작품이 아닌 것은?", c: ["절규", "사춘기", "마돈나", "키스"], a: 3, e: "「키스」는 구스타프 클림트의 대표작이다." },
-  { q: "금빛 장식과 평면적 패턴이 두드러지는 「키스」의 작가는?", c: ["클림트", "뭉크", "마티스", "몬드리안"], a: 0, e: "구스타프 클림트의 대표작이다." },
-  { q: "아르누보의 특징이 아닌 것은?", c: ["식물 무늬", "덩굴 같은 곡선", "실내 장식 활용", "검정 수직·수평선과 원색 사각형"], a: 3, e: "수직·수평선과 원색 사각형은 몬드리안의 조형 언어다." },
-  { q: "오브리 비어즐리의 작품으로 필기된 것은?", c: ["혼란 속의 살로메", "녹색의 띠", "기억의 고집", "만종"], a: 0, e: "아르누보 항목에서 「혼란 속의 살로메」가 제시되었다." },
-  { q: "야수주의의 특징으로 가장 알맞은 것은?", c: ["밝고 강렬하게 과장된 색채", "현실을 사진처럼 재현", "논리와 이성의 절대적 존중", "최소한의 형태와 색만 사용"], a: 0, e: "야수주의는 강렬한 색채, 거친 붓질, 왜곡된 형태와 원근이 특징이다." },
-  { q: "다음 중 앙리 마티스의 작품이 아닌 것은?", c: ["녹색의 띠", "생의 기쁨", "춤", "아비뇽의 처녀들"], a: 3, e: "「아비뇽의 처녀들」은 피카소의 작품이다." },
-  { q: "입체주의의 대표 화가는?", c: ["피카소", "모네", "밀레", "클림트"], a: 0, e: "피카소는 입체주의를 대표하는 화가이다." },
-  { q: "피카소의 입체주의 대표작은?", c: ["아비뇽의 처녀들", "인상, 해돋이", "오르낭의 매장", "이것 봐 미키"], a: 0, e: "「아비뇽의 처녀들」은 피카소의 대표적인 입체주의 작품이다." },
-  { q: "수직선·수평선과 원색의 사각형을 사용한 추상화가는?", c: ["몬드리안", "뒤샹", "밀레", "앵그르"], a: 0, e: "몬드리안은 수직·수평선과 원색 면을 사용한 기하학적 추상으로 유명하다." },
-  { q: "다다이즘이 발생한 직접적 시대 배경은?", c: ["제1차 세계대전", "프랑스 혁명", "산업혁명 초기", "1960년대 소비사회"], a: 0, e: "다다이즘은 제1차 세계대전 중 스위스 취리히에서 발생했다." },
-  { q: "‘Dada’라는 말의 의미와 태도로 알맞은 것은?", c: ["고대의 질서와 비례", "아무 의미 없는 말, 합리성과 논리의 거부", "빛과 색채의 일치", "최소한주의"], a: 1, e: "다다는 무의미한 말이며 반이성·반전통의 태도를 드러낸다." },
-  { q: "다다이즘 화가와 작품의 연결로 옳은 것은?", c: ["뒤샹 - 샘", "달리 - 춤", "모네 - 절규", "마티스 - 만종"], a: 0, e: "PDF에는 다다이즘 작가 뒤샹의 작품으로 「샘」이 제시되어 있다." },
-  { q: "초현실주의의 대표 화가는?", c: ["살바도르 달리", "클로드 모네", "구스타브 쿠르베", "앙리 마티스"], a: 0, e: "살바도르 달리는 초현실주의를 대표하는 화가이다." },
-  { q: "녹아내리는 시계가 등장하는 달리의 작품은?", c: ["기억의 고집", "백조를 반영한 코끼리", "넘버 1A", "우는 여자"], a: 0, e: "「기억의 고집」은 녹아내리는 시계로 유명하다." },
-  { q: "추상표현주의 화가와 작품의 연결로 옳은 것은?", c: ["잭슨 폴록 - 넘버 1A", "몬드리안 - 샘", "달리 - 춤", "리히텐슈타인 - 수련"], a: 0, e: "잭슨 폴록의 대표작은 「넘버 1A」이다." },
-  { q: "「이것 봐 미키」와 「우는 여자」를 그린 팝아트 화가는?", c: ["로이 리히텐슈타인", "피에트 몬드리안", "오브리 비어즐리", "폴 세잔"], a: 0, e: "두 작품 모두 로이 리히텐슈타인의 작품이다." },
-  { q: "리히텐슈타인의 작품으로 옳은 것은?", c: ["이것 봐 미키", "수련", "만종", "기억의 고집"], a: 0, e: "PDF에는 리히텐슈타인의 작품으로 「이것 봐 미키」와 「우는 여자」가 제시되어 있다." },
-  { q: "미니멀리즘의 뜻으로 알맞은 것은?", c: ["최소한주의", "무의식주의", "고전부흥주의", "자연주의"], a: 0, e: "minimal에 ism을 붙인 말로 ‘최소한주의’라는 의미다." },
-  { q: "개념미술이 미술의 핵심으로 삼는 것은?", c: ["작가의 아이디어와 개념", "비싼 재료", "정확한 인체 비례", "화려한 장식"], a: 0, e: "개념미술은 물질적 결과보다 아이디어 자체를 우선한다." },
-  { q: "개념미술의 ‘미술의 비물질화’에 대한 설명은?", c: ["작품의 물질적 형태보다 개념을 중시한다", "모든 작품을 금속으로 만든다", "인물을 이상적으로 묘사한다", "오직 풍경화만 인정한다"], a: 0, e: "완성된 물체보다 생각과 아이디어가 예술의 중심이 된다." },
-  { q: "개념미술의 표현 방식에 대한 설명으로 알맞은 것은?", c: ["설치·퍼포먼스·사진 등 다양한 매체가 가능하다", "반드시 유화여야 한다", "반드시 인물화여야 한다", "정해진 한 가지 형태만 허용된다"], a: 0, e: "표현 수단은 개념 전달의 도구이므로 정해진 형태가 없다." },
-  { q: "개념미술의 특징으로 옳지 않은 것은?", c: ["아이디어를 중시한다", "정해진 형태가 없다", "다양한 매체를 사용할 수 있다", "완성된 물질적 형태가 아이디어보다 중요하다"], a: 3, e: "개념미술은 완성된 물질적 형태보다 아이디어를 중요하게 본다." }
+const passages = [
+  {
+    page: 194,
+    title: "최규하 과도정부의 성격",
+    text: `그러나 최규하 정부 내에는 민주화를 수행할 만한 {{개혁적 성향}}의 인물이 전무했다. 권위주의체제에서 순종적인 실무능력을 갖춘 {{최규하}} 대통령을 비롯하여, {{기술관료}}들인 내각구성원, 일본식 {{군사문화}}에 익숙한 군부엘리트들이 과도정부에 포진하고 있었다. 이들에게는 민주화보다는 {{사회안정}}을 위한 통제력 배지가 최우선 관심사였다. 따라서 이들은 ‘{{박대통령=유신체제}}’라는 등식을 의식하여 최소한의 ‘{{현상변경정책}}’을 통해 국민의 {{지지}}를 확보하려고 하였다.`
+  },
+  {
+    page: 194,
+    title: "민주공화당의 대응",
+    text: `최규하 정부의 정치일정에 대해 정당 및 재야세력의 반응은 다양했다. 먼저, {{민주공화당}}은 197{{9}}년 {{11}}월 {{13}}일 전당대회에서 {{김종필}}을 총재로 선출하여 당의 활성화를 꾀하였다. 그러나 당 내부의 분열과 더불어 내각과 {{군부엘리트}}의 지지를 받지 못함에 따라 ‘{{집권당}}’이 아닌 단순 ‘{{여당}}’의 지위로 하락하였다. 존립의 위기에 처한 민주공화당은 생존전략 차원에서 정부 및 야당과의 협력적 자세를 취하였다.`
+  },
+  {
+    page: 194,
+    title: "신민당의 민주화 전략",
+    text: `{{10·26}} 직후 곧바로 {{김영삼}} 체제로 복귀한 신민당은 {{3개월}} 내에 유신헌법을 폐지하는 헌법 개정과 그 후 {{2개월}} 내에 신헌법하에 {{대통령직선제}}를 통한 민간정부의 수립을 촉구하였다. 그러나 신민당의 전략은 최규하 권한대행과의 회담 이후, ‘{{긴급조치의 해제}}’와 ‘{{국회의 개헌주체화}}’의 주장을 버리고 ‘{{대통령보궐선거방침}}’을 양해함으로써 단계적 방식의 민주화이행 전략을 채택하였다.`
+  },
+  {
+    page: 194,
+    title: "김대중·국민연합의 민주화 전략",
+    text: `한편 {{김대중}}을 비롯한 재야의 ‘{{국민연합}}’ 세력들은 대통령보궐선거 반대, 공화당과 유정회 그리고 {{통일주체국민회의}}의 해체, {{거국민주내각}}의 구성을 요구했다. 이들은 신민당의 소극적인 대응을 보면서 군부와 유신잔당의 민주화 지연작전에 신민당도 동조하고 있지는 않나 하는 깊은 의구심을 가지고 있었다. 따라서 김대중과 ‘국민연합’ 세력들은, 신민당의 {{단계론적 민주화이행}} 전략과는 달리, 다소 급진적이고 단절적인 민주화이행 전략 ― {{유신체제의 총사퇴}}, {{개헌}}, 총선거, {{민주정부수립}}의 정치일정 ― 을 제시하였다.`
+  },
+  {
+    page: 197,
+    title: "12·12 사건과 이중적 권력구조",
+    text: `{{12·12사건}}은 정치체제의 위기상황에서 군부 내 {{강경파}}가 온건파를 배제하고 실질적인 정치권력을 장악한 일종의 {{군사반란}}이며 하극상에 의한 군부쿠데타였다. 이를 계기로 {{신군부}}는 가장 강력한 정치행위자로 등장하였고, 최규하 정부의 무력화가 가속적으로 진행되었다. 그 결과, “최 대통령을 수반으로 하는 {{형식적 정부}}와 전두환 장군을 정점으로 하는 {{실제적 권력}}”이 공존하는 일종의 {{이중적 권력구조}} 상황이 연출되었다. 이로써 정국은 유신체제의 조속한 철폐와 민주주의의 실현을 요구하는 민중, 이를 부정하는 신군부세력, 그리고 {{제도권 정치세력}} 간의 3파전으로 압축되었다. 이제 민주화세력에게는 신군부세력에 대한 강경투쟁이냐 아니면 정치적 타협이냐의 선택만이 남아 있었다.`
+  },
+  {
+    page: 197,
+    title: "신군부의 집권 모색",
+    text: `하지만 {{12·12 군사반란}}을 주도한 신군부는 집권의 길을 암암리에 모색하고 있었다. 이들은 {{비상계엄}}을 유지하고 {{합동수사본부}}의 권한을 강화하는 한편, {{헌법개정작업}}을 지연시켰다. 제{{10}}대 대통령으로 {{최규하}}가 취임하여 비상계엄이 지속되어야 할 하등의 이유가 없는 상황에서도 신군부는 비상계엄의 해제를 반대하였다. 심지어는 각 {{정치세력}}의 활동을 감시하고 통제하기 위해서 합동수사본부의 권한과 {{활동영역}}을 계속 강화시켜 나갔다.`
+  },
+  {
+    page: 225,
+    title: "최규하 대통령의 하야",
+    text: `신군부세력은 {{김정열}}을 앞세워 최규하 대통령 하야 설득작업에 들어갔으며, 198{{0}}년 {{8}}월 {{16}}일 최규하는 대통령을 사임하였다. 형식상으로는 {{합법적 정권이양}}의 절차를 밟아 이루어졌다. 그렇지만 최대통령이 대권을 넘기는 방식이 하야 외에 다른 방법이 없었느냐에 대해서는 의문이 있다. 이를테면 단순한 하야 이외에 신속히 {{헌법}}을 개정한 뒤 물러나는 등 몇 가지 방안이 있었는데 {{8·16 하야}}는 가장 {{무기력한 선택}}이었기 때문이다.`
+  },
+  {
+    page: 225,
+    title: "전두환의 제11대 대통령 선출",
+    text: `최규하 대통령을 하야시킨 신군부세력은 198{{0}}년 {{8}}월 {{21}}일 {{전군주요지휘관회의}}에서 전두환을 국가원수로 추대하기로 결의하고서, 8월 {{22}}일에 전두환 대장의 전역식을 치렀다. 그 후 신군부세력은 8월 {{27}}일 {{통일주체국민회의}}에서 제{{11}}대 대통령으로 전두환 국보위 위원장을 선출하였다. 단독 출마한 그는 총투표자 {{2,525명}} 가운데 기권 1명을 제외한 만장일치로 선출되었다.`
+  },
+  {
+    page: 225,
+    title: "제5공화국 헌법",
+    text: `전두환을 대통령으로 선출한 신군부세력은 비록 형식적인 요건에 불과하더라도 {{헌법}}을 개정하여 새 공화국을 출범시키고 {{유신체제}}와의 차별성을 부각시킬 필요성 때문에 서둘러 헌법개정작업을 추진하였다. 그들은 그간 헌법개정작업을 준비해 온 {{개헌심의위원회}}의 헌법시안을 198{{0}}년 {{10}}월 {{9}}일 최종 확정하여 10월 {{23}}일 국민투표에서 전문과 본문 131조, 부칙 10조의 {{제5공화국}}의 헌법을 95.5%의 투표율과 91.6%의 찬성으로 통과시켰다. 새 헌법이 10월 27일에 공포·시행됨에 따라 기존 정당들은 자동 해산되고 통일주체국민회의도 폐지되었다. 그리고 부칙규정에 의하여 제10대 국회는 6년의 임기 중 채 2년을 채우지 못하고 임기를 종료하며 해산되었다.`
+  },
+  {
+    page: 225,
+    title: "국가보위입법회의",
+    text: `{{전두환}} 대통령은 {{10대 국회}}가 해산됨에 따라, 제{{11}}대 국회의 최초 개원일 전까지 국회의 기능을 담당하는 ‘{{국가보위입법회의}}’(입법회의)를 {{10}}월 {{28}}일 발족시켰다. 입법의원으로 총 {{81명}}이 임명되었는데, 이들은 신군부의 원활한 {{집권 및 출범}}을 위한 법적 조치들을 마련하는 거수기에 불과하였다.`
+  },
+  {
+    page: 242,
+    title: "개헌서명운동의 전개",
+    text: `{{14개 대학}}의 학생 {{1천여 명}}이 모여 ‘{{파쇼헌법철폐투쟁대회}} 및 개헌서명운동추진본부 결성식’을 개최하였고, {{2}}월 {{12}}일에는 신민당과 {{민추협}}이 공동으로 1천만 개헌서명운동을 전격적으로 개시하였다. 또한 {{3}}월 {{5}}일에는 민통련이 산하 23개 단체와 각계 민주인사 303인의 이름으로 ‘군사독재퇴진촉구와 민주헌법쟁취를 위한 범국민서명운동선언’을 발표하였다.`
+  },
+  {
+    page: 242,
+    title: "국회 헌법개정특별위원회",
+    text: `개헌서명운동이 급속히 확산되자, {{전두환}} 대통령은 ‘{{임기내 개헌 불가}}’라는 당초 입장에서 물러나, {{4}}월 {{30}}일 청와대에서 열린 {{3당대표 회담}}에서 국회가 합의한다면 임기 내 개헌에 반대하지 않겠다고 밝혔다. 이에 민정당과 신민당은 {{5}}월 {{27}}일 ‘{{국회헌법개정 특별위원회}}’ 구성에 합의하였고, 6월 24일 국회는 ‘헌법개정 특별위원회 구성결의안’을 통과시켰다.`
+  },
+  {
+    page: 242,
+    title: "이민우 구상과 통일민주당",
+    text: `그러나 개헌을 둘러싼 신민당과 민정당의 입장이 상이했던 까닭에, 개헌특위는 공전을 거듭하였다. 신민당은 {{대통령직선제}} 합의를 촉구하였고, 민정당은 {{의원내각제}}를 주장하였다. 양자의 입장이 평행선을 그으면서 개헌특위는 거듭된 파행으로 유명무실한 기구로 전락하는 양상을 보였다. 이 과정에서 {{7개항}}의 민주화 조치가 선행된다면 내각제를 긍정적으로 검토하겠다는 이른바 ‘{{이민우 구상}}’이 {{12}}월 {{24}}일 발표되었다. 이에 따라, 신민당은 대통령직선제를 주장하는 세력과 이민우 구상을 받아들이자는 세력으로 분열되어 한동안 혼란을 경험하였다. 신민당 내부의 혼란은 결국 198{{7}}년 {{4}}월 김대중·김영삼이 74명의 국회의원과 더불어 신민당을 탈당하여 신당(통일민주당)을 창당함으로써 마감되었고, 이에 따라 ‘이민우 구상’은 좌절되었다. 양김의 탈당과 통일민주당의 창당은 직선제 개헌을 제외한 어떠한 타협도 거부한다는 입장을 명확하게 표명한 것으로, 협상의 폭과 집권세력의 선택의 여지를 제한하였다. 더불어, 양김의 통일민주당 창당은 집권세력 내의 협상파의 입지를 약화시키고 강경파의 득세를 가져왔다.`
+  },
+  {
+    page: 271,
+    title: "김영삼의 합당 판단",
+    note: "원문이 앞 페이지에서 이어지는 문단",
+    text: `시 {{김영삼}}은 차기대권 경쟁에서 {{제3당}}의 위치에서 도전해야 하는 불리한 입장에 있었다. {{불리한 정치적 상황}}을 돌파하기 위한 전략으로 김영삼은 {{민정당}}과의 합당을 긍정적으로 평가하였다. 즉 민정당 내에 차기 대권에 도전할 {{전국적 명성}}을 가진 인물이 부재한 까닭에, 김영삼은 민정당과 합당할 경우 보다 {{유리한 정치구도}}하에서 {{차기대권}}에 도전할 수 있다고 판단하였다.`
+  },
+  {
+    page: 271,
+    title: "3당합당에 대한 총평",
+    text: `결국 {{3당합당}}으로 이어진 {{정계개편}}은 {{민자당}}이라는 {{거대여당}}의 출현으로 잠재적으로 정국의 안정을 도모할 수 있는 {{정치적 구조}}를 창출했다는 점에서 긍정적으로 평가할 수 있을지 모르나, 다음의 몇 가지 측면에서 향후 {{한국정치 발전}}에 {{부정적 영향}}을 미칠 수 있는 요소들을 담고 있었다.`
+  },
+  {
+    page: 271,
+    title: "3당합당과 정당정치",
+    text: `첫째, {{3당합당}}은 기본적으로 민주적 정당정치의 확립과 발전에 역행하는 {{퇴행적 현상}}이었다. 3당통합은 {{여소야대}} 상황을 일거에 역전시킨 사건으로, 유권자의 의사와는 무관하게 소수의 {{정치엘리트}} 간의 비밀협약에 의한 정치적 담합의 성격이 강하였다. 비록 3당통합의 명분을 “{{정치안정과 지속적 경제발전}}을 위한 구국의 대결단”이라고 내걸었으나, 실제로는 국민의 의사를 배반하고 정당정치의 {{책임성}}(accountability)을 저버린 {{소수엘리트}}의 정치적 야합이었다.`
+  },
+  {
+    page: 271,
+    title: "3당합당과 보수화",
+    text: `둘째, 3당합당은 의회 구도의 {{보수화}}를 촉진하여, 민주주의 이행 이후 시민사회의 고조된 개혁 열기를 의회에서 차단시키고, 동시에 {{보수적 헤게모니}}를 구축하고 강화시키려는 집권세력의 전략적 실천이었다. 198{{8}}년 총선부터 198{{9}}년 공안정국에 이르기까지 시민사회는 진보적 개혁의 열기로 가득하였다. 그리고 정치사회를 대표하는 의회 내에는 {{여소야대}} 정국을 통하여 권위주의 국가와 정치과정을 개혁하려는 엄청난 압력이 분출되었다. 이에 대한 지배세력의 움직임은 {{공안정국}}과 {{3당합당}}으로 나타났다. 즉 공안정국의 전략이 국가의 헤게모니를 동원하여 시민사회의 민주화 열기와 의회에서의 개혁의지를 급격히 냉각시키는 것이었다면, 3당합당의 전략은 보수주의적 권위주의와 보수주의적 자유주의의 결합을 실현하여 정책·이념적 정향 및 엘리트구조에서 고도의 연속성을 갖는 {{제한된 민주화 이행}}을 위한 조치였다.`
+  },
+  {
+    page: 271,
+    title: "3당합당과 지역갈등",
+    note: "원문이 다음 페이지로 이어지는 문단",
+    text: `셋째, {{3당합당}}은 ‘{{호남 대 비호남}}’이라는 변형된 {{지역갈등구조}}를 잉태하고 있었다. 3당합당은 {{노태우}}의 {{대구·경북지역}}, {{김영삼}}의 {{부산·경남지역}}, 그리고 김`
+  },
+  {
+    page: 285,
+    title: "부정부패 사정",
+    note: "원문이 앞 페이지에서 이어지는 문단",
+    text: `재산공개에 뒤이어 ‘{{슬롯머신}}’ 사건으로 {{박철언}} 의원, 이건개 대전고검장, 엄삼탁 병무청장 등 구정권의 핵심 인사들이 사법처리되었다. 또한 군의 {{인사 비리}}가 발각되어 이종구·이상훈 전 국방장관, 김종호·김철우 전 해군참모총장, 한주석·정용후 전 공군참모총장 등이 구속되었고, 부정부패 혐의로 민자당 내 민정계의 대부였던 {{박태준}} 전 포철회장과 김종휘 전 외교안보수석이 수배되었다. 또한 대통령 취임 {{1년}} 기간 동안, {{1,363명}}의 비위공무원이 파면·해임·면직되었고, 민간부문에서 불법 호화별장으로 인해 31명이, 부동산투기로 {{64명}}이, 법조비리로 {{602명}}이 구속되었다.`
+  },
+  {
+    page: 285,
+    title: "금융·부동산 실명제와 정치개혁",
+    text: `이와 함께 ‘{{깨끗한 정치}}’의 실천을 제도적 차원에서 공고히 하기 위해 일련의 개혁조치가 취해졌다. 첫째, 김영삼 대통령은 199{{3}}년 {{8}}월 {{12}}일 ‘{{금융실명거래 및 비밀보장에 관한 긴급재정경제명령}}’을 통해 ‘{{금융실명제}}’를 전격적으로 도입하였다. 금융실명제의 실시는 자금 흐름의 투명성을 제고하고 음성소득과 불건전 자금거래를 차단하는 효과를 지니는 까닭에, 한국사회의 뿌리 깊은 정경유착, 부정부패, 지하경제의 근절이 기대되었다. 둘째, 금융실명제의 후속 조처로서, 부동산에 대한 등기는 반드시 실소유자의 명의로만 하게 하는 ‘{{부동산실명제}}’가 199{{5}}년 {{7}}월 1일을 기해 실시되었다. 즉 부동산투기와 조세포탈 그리고 재산은닉 등의 수단으로 악용되어 온 명의신탁(名義信託) 제도를 금지함으로써 경제정의를 실현코자 하였다. 셋째, 1994년 3월 ‘공직선거 및 선거부정방지법’과 ‘정치자금법’이 제·개정되었다. 통합선거법은 기존의 각종 선거법들을 단일 법률로 체계화하여 각종 공직선거의 효율적인 관리를 시도하였다. 개정된 정치자금법은 음성적`
+  },
+  {
+    page: 319,
+    title: "노동시장 유연화",
+    text: `노동개혁의 목표는 {{노동시장의 유연성}}을 제고하는 것이었다. 노동시장의 유연화는 노동시장의 {{환경변화}} 및 {{수요변화}}에 대응하여 신속하게 {{고용·임금·노동시간}}을 탄력적으로 조정할 수 있는 노동시장의 능력을 의미한다. 따라서 노동시장 유연성의 제고는 기업들에게 시장 상황에 쉽게 적응할 수 있게 함으로써 기업의 {{경쟁력}}을 향상시킬 수 있는 장점을 지니고 있으나, 동시에 {{실업자}} 및 {{비정규직}}의 양산 등 {{고용불안정}}을 증대시킬 가능성도 함께 안고 있었다.`
+  },
+  {
+    page: 319,
+    title: "노사정위원회의 발족",
+    text: `{{사회복지체계}}가 부재한 상황에서, 노동시장의 유연성 제고정책은 엄청난 노동의 저항이 예상되는 사항이었다. 즉 노동의 동의 없는 {{정리해고제}}의 실시는 위기에 처한 한국경제를 돌이킬 수 없는 상황으로 몰아갈 가능성이 높았다. 노동의 저항을 피하기 위해, 정부는 {{한국노총}}과 {{민주노총}}에 ‘{{IMF(위기) 극복을 위한 노사정협의회}}’ 구성을 제안하였다. 그리고 199{{8}}년 {{1}}월 {{15}}일 대통령 자문기구 형태로 노사정위원회가 발족되었다.`
+  },
+  {
+    page: 319,
+    title: "노사정 공동선언과 합의",
+    text: `몇 차례의 난항이 있었지만, 정부의 노력은 상당한 성과를 거두었다. {{1}}월 {{20}}일, 노·사·정이 “IMF 체제하의 경제위기 극복을 위해 불가피하게 요구되는 고통을 {{공정하게 분담}}”한다는 ‘{{제1차 노사정 공동선언문}}’이 작성되었다. 그리고 {{2}}월 {{9}}일에는 ‘제2차 공동선언문’으로 알려진 ‘{{경제위기 극복과 재도약을 위한 노사정 공동선언문}}’이 발표되었다. 합의 내용에 의하면, 노동은 {{정리해고제}}의 조기실시 및 {{파견근로제}}의 법제화를 허용하는 대신, 국가는 노조의 정치활동을 보장하고, 공무원·교원의 단결권을 허용하며, 실업자에 대해 초기업 단위노조 가입자격을 인정하고, 동시에 고용안정 및 실업대책과 사회보장제도를 확충하며, 기업은 기업재무구조를 개선하여 기업의 경영투명성을 확보하며, 구조조정의 실행을 통해 기업의 경쟁력을 강화한다는 것이었다.`
+  }
 ];
 
-const shortAnswer = [
-  { q: "감성보다 이성, 화려함보다 절제와 질서를 중시한 사조는?", a: ["신고전주의"], e: "신고전주의" },
-  { q: "프랑스 신고전주의를 대표하는 화가는?", a: ["자크 루이 다비드", "다비드"], e: "자크 루이 다비드" },
-  { q: "오스만 제국 하렘의 여자 노예를 뜻하는 말은?", a: ["오달리스크"], e: "오달리스크" },
-  { q: "‘지금 여기’의 현실을 관찰해 표현한 사조는?", a: ["사실주의"], e: "사실주의" },
-  { q: "사실주의의 대표 화가는?", a: ["구스타브 쿠르베", "쿠르베"], e: "구스타브 쿠르베" },
-  { q: "빛과 색채의 순간적인 변화를 표현한 사조는?", a: ["인상주의"], e: "인상주의" },
-  { q: "빛은 곧 색채라는 원리를 추구한 인상주의 화가는?", a: ["클로드 모네", "모네"], e: "클로드 모네" },
-  { q: "자연의 본질을 원기둥·구체·원추형으로 본 화가는?", a: ["폴 세잔", "세잔"], e: "폴 세잔" },
-  { q: "짧고 소용돌이치는 붓질과 밝은 보색이 특징인 화가는?", a: ["빈센트 반 고흐", "고흐", "반 고흐"], e: "빈센트 반 고흐" },
-  { q: "외관 재현보다 내면과 감정을 암시적으로 표현하는 사조는?", a: ["상징주의"], e: "상징주의" },
-  { q: "뒤틀린 형태와 강렬한 색채로 내면을 표현한 초기 표현주의 화가는?", a: ["에드바르 뭉크", "뭉크"], e: "에드바르 뭉크" },
-  { q: "금빛 장식과 평면적 무늬가 특징인 화가는?", a: ["구스타프 클림트", "클림트"], e: "구스타프 클림트" },
-  { q: "식물 무늬와 덩굴 같은 곡선을 특징으로 하는 양식은?", a: ["아르누보"], e: "아르누보" },
-  { q: "밝고 강렬하게 과장된 색채를 사용한 야수주의 화가는?", a: ["앙리 마티스", "마티스"], e: "앙리 마티스" },
-  { q: "입체주의의 대표 화가는?", a: ["파블로 피카소", "피카소"], e: "파블로 피카소" },
-  { q: "수직·수평선과 원색 사각형으로 유명한 추상화가는?", a: ["피에트 몬드리안", "몬드리안"], e: "피에트 몬드리안" },
-  { q: "제1차 세계대전 중 취리히에서 발생한 반이성·반전통 사조는?", a: ["다다이즘", "다다"], e: "다다이즘" },
-  { q: "초현실주의를 대표하는 화가는?", a: ["살바도르 달리", "달리"], e: "살바도르 달리" },
-  { q: "「이것 봐 미키」와 「우는 여자」를 그린 화가는?", a: ["로이 리히텐슈타인", "리히텐슈타인"], e: "로이 리히텐슈타인" },
-  { q: "minimal + ism에서 나온 ‘최소한주의’는?", a: ["미니멀리즘"], e: "미니멀리즘" },
-  { q: "물질적 작품보다 아이디어 자체를 핵심으로 삼는 미술은?", a: ["개념미술", "개념 미술"], e: "개념미술" }
-];
+const pattern = /\{\{(.*?)\}\}/g;
+const pages = [...new Set(passages.map((passage) => passage.page))];
+let activePage = "all";
 
-const imageQuestions = [
-  { q: "다음 작품의 올바른 제목을 고르시오.", img: "assets/page-01-image-01.png", c: ["오달리스크", "사춘기", "녹색의 띠", "유디트"], a: 0, e: "앵그르, 「오달리스크」" },
-  { q: "다음 작품의 올바른 제목을 고르시오.", img: "assets/page-02-image-01.png", c: ["오르낭의 매장", "내 화실의 내부", "만종", "생의 기쁨"], a: 0, e: "쿠르베, 「오르낭의 매장」" },
-  { q: "다음 작품의 올바른 제목을 고르시오.", img: "assets/page-03-image-02.png", c: ["씨뿌리는 사람", "만종", "감자 먹는 사람들", "정원에 있는 여인들"], a: 1, e: "밀레, 「만종」" },
-  { q: "다음 작품의 올바른 제목을 고르시오.", img: "assets/page-04-image-01.png", c: ["씨뿌리는 사람", "만종", "오르낭의 매장", "감자 먹는 사람들"], a: 0, e: "밀레, 「씨뿌리는 사람」" },
-  { q: "다음 작품의 올바른 제목을 고르시오.", img: "assets/page-05-image-01.png", c: ["수련", "인상, 해돋이", "생 빅투아르 산", "기억의 고집"], a: 1, e: "모네, 「인상, 해돋이」" },
-  { q: "다음 작품 연작의 올바른 제목을 고르시오.", img: "assets/page-05-image-03.png", c: ["루앙 대성당", "수련", "정원에 있는 여인들", "생 빅투아르 산"], a: 0, e: "모네, 「루앙 대성당」 연작" },
-  { q: "다음 작품의 올바른 제목을 고르시오.", img: "assets/page-05-image-04.png", c: ["인상, 해돋이", "수련", "춤", "별이 빛나는 밤"], a: 1, e: "모네, 「수련」" },
-  { q: "다음 작품의 올바른 제목을 고르시오.", img: "assets/page-05-image-05.png", c: ["생 빅투아르 산", "루앙 대성당", "오르낭의 매장", "백조를 반영한 코끼리"], a: 0, e: "세잔, 「생 빅투아르 산」" },
-  { q: "다음 작품의 올바른 제목을 고르시오.", img: "assets/page-06-image-01.png", c: ["감자 먹는 사람들", "만종", "내 화실의 내부", "생의 기쁨"], a: 0, e: "고흐, 「감자 먹는 사람들」" },
-  { q: "다음 작품의 올바른 제목을 고르시오.", img: "assets/page-07-image-03.png", c: ["마돈나", "절규", "사춘기", "자화상"], a: 1, e: "뭉크, 「절규」" },
-  { q: "다음 작품의 올바른 제목을 고르시오.", img: "assets/page-08-image-01.png", c: ["유디트", "키스", "아델레 블로흐 바우어의 초상", "마돈나"], a: 1, e: "클림트, 「키스」" },
-  { q: "다음 작품의 올바른 제목을 고르시오.", img: "assets/page-08-image-04.png", c: ["혼란 속의 살로메", "우는 여자", "유디트", "춤"], a: 0, e: "오브리 비어즐리, 「혼란 속의 살로메」" },
-  { q: "다음 작품의 올바른 제목을 고르시오.", img: "assets/page-09-image-01.png", c: ["녹색의 띠", "생의 기쁨", "춤", "후식"], a: 0, e: "마티스, 「녹색의 띠」" },
-  { q: "다음 작품의 올바른 제목을 고르시오.", img: "assets/page-09-image-04.png", c: ["바다의 생물들", "생의 기쁨", "춤", "후식"], a: 2, e: "마티스, 「춤」" },
-  { q: "다음 작품의 올바른 제목을 고르시오.", img: "assets/page-09-image-06.png", c: ["앙브루아즈 볼라르의 초상", "아비뇽의 처녀들", "생의 기쁨", "녹색의 띠"], a: 1, e: "피카소, 「아비뇽의 처녀들」" },
-  { q: "다음 작품의 올바른 제목을 고르시오.", img: "assets/page-10-image-02.png", c: ["샘", "수련", "후식", "이것 봐 미키"], a: 0, e: "마르셀 뒤샹, 「샘」" },
-  { q: "다음 작품의 올바른 제목을 고르시오.", img: "assets/page-11-image-01.png", c: ["백조를 반영한 코끼리", "기억의 고집", "넘버 1A", "절규"], a: 1, e: "살바도르 달리, 「기억의 고집」" },
-  { q: "다음 작품의 올바른 제목을 고르시오.", img: "assets/page-11-image-03.png", c: ["넘버 1A", "기억의 고집", "아비뇽의 처녀들", "수련"], a: 0, e: "잭슨 폴록, 「넘버 1A」" },
-  { q: "다음 작품의 올바른 제목을 고르시오.", img: "assets/page-12-image-02.png", c: ["이것 봐 미키", "우는 여자", "마돈나", "녹색의 띠"], a: 1, e: "로이 리히텐슈타인, 「우는 여자」" }
-];
+const normalize = (value) => value
+  .trim()
+  .toLowerCase()
+  .replace(/[‘’'"“”·,\s()]/g, "");
 
-const artistImageQuestions = [
-  { q: "다음 작품을 그린 작가를 고르시오.", img: "assets/page-01-image-01.png", c: ["앵그르", "다비드", "쿠르베", "밀레"], a: 0, e: "앵그르, 「오달리스크」" },
-  { q: "다음 작품을 그린 작가를 고르시오.", img: "assets/page-02-image-01.png", c: ["밀레", "쿠르베", "모네", "세잔"], a: 1, e: "쿠르베, 「오르낭의 매장」" },
-  { q: "다음 작품을 그린 작가를 고르시오.", img: "assets/page-03-image-02.png", c: ["쿠르베", "고흐", "밀레", "모네"], a: 2, e: "밀레, 「만종」" },
-  { q: "다음 작품을 그린 작가를 고르시오.", img: "assets/page-04-image-01.png", c: ["밀레", "쿠르베", "세잔", "고흐"], a: 0, e: "밀레, 「씨뿌리는 사람」" },
-  { q: "다음 작품을 그린 작가를 고르시오.", img: "assets/page-05-image-01.png", c: ["세잔", "고흐", "모네", "마티스"], a: 2, e: "모네, 「인상, 해돋이」" },
-  { q: "다음 연작을 그린 작가를 고르시오.", img: "assets/page-05-image-03.png", c: ["모네", "세잔", "고흐", "피카소"], a: 0, e: "모네, 「루앙 대성당」 연작" },
-  { q: "다음 작품을 그린 작가를 고르시오.", img: "assets/page-05-image-04.png", c: ["세잔", "모네", "고흐", "클림트"], a: 1, e: "모네, 「수련」" },
-  { q: "다음 작품을 그린 작가를 고르시오.", img: "assets/page-05-image-05.png", c: ["모네", "고흐", "세잔", "밀레"], a: 2, e: "세잔, 「생 빅투아르 산」" },
-  { q: "다음 작품을 그린 작가를 고르시오.", img: "assets/page-06-image-01.png", c: ["고흐", "밀레", "쿠르베", "세잔"], a: 0, e: "고흐, 「감자 먹는 사람들」" },
-  { q: "다음 작품을 그린 작가를 고르시오.", img: "assets/page-07-image-03.png", c: ["클림트", "뭉크", "마티스", "비어즐리"], a: 1, e: "뭉크, 「절규」" },
-  { q: "다음 작품을 그린 작가를 고르시오.", img: "assets/page-08-image-01.png", c: ["뭉크", "마티스", "클림트", "고흐"], a: 2, e: "클림트, 「키스」" },
-  { q: "다음 작품을 그린 작가를 고르시오.", img: "assets/page-08-image-04.png", c: ["클림트", "오브리 비어즐리", "뭉크", "리히텐슈타인"], a: 1, e: "오브리 비어즐리, 「혼란 속의 살로메」" },
-  { q: "다음 작품을 그린 작가를 고르시오.", img: "assets/page-09-image-01.png", c: ["피카소", "마티스", "몬드리안", "클림트"], a: 1, e: "마티스, 「녹색의 띠」" },
-  { q: "다음 작품을 그린 작가를 고르시오.", img: "assets/page-09-image-04.png", c: ["마티스", "피카소", "달리", "몬드리안"], a: 0, e: "마티스, 「춤」" },
-  { q: "다음 작품을 그린 작가를 고르시오.", img: "assets/page-09-image-06.png", c: ["마티스", "피카소", "세잔", "몬드리안"], a: 1, e: "피카소, 「아비뇽의 처녀들」" },
-  { q: "다음 작품을 그린 작가를 고르시오.", img: "assets/page-10-image-01.png", c: ["피카소", "폴록", "몬드리안", "달리"], a: 2, e: "PDF의 몬드리안 작품" },
-  { q: "다음 작품을 만든 작가를 고르시오.", img: "assets/page-10-image-02.png", c: ["몬드리안", "마르셀 뒤샹", "잭슨 폴록", "살바도르 달리"], a: 1, e: "마르셀 뒤샹, 「샘」" },
-  { q: "다음 작품을 그린 작가를 고르시오.", img: "assets/page-11-image-01.png", c: ["살바도르 달리", "잭슨 폴록", "피카소", "뭉크"], a: 0, e: "살바도르 달리, 「기억의 고집」" },
-  { q: "다음 작품을 그린 작가를 고르시오.", img: "assets/page-11-image-03.png", c: ["달리", "몬드리안", "잭슨 폴록", "리히텐슈타인"], a: 2, e: "잭슨 폴록, 「넘버 1A」" },
-  { q: "다음 작품을 그린 작가를 고르시오.", img: "assets/page-12-image-02.png", c: ["앤디 워홀", "로이 리히텐슈타인", "마티스", "피카소"], a: 1, e: "로이 리히텐슈타인, 「우는 여자」" }
-];
-
-imageQuestions.push(...artistImageQuestions);
-
-const normalize = (value) => value.toLowerCase().replace(/[\s,·.「」『』\-]/g, "");
-const isCorrectText = (value, answers) => answers.some((answer) => normalize(value) === normalize(answer));
-const allQuestions = [...multipleChoice, ...shortAnswer, ...imageQuestions];
-
-function heading(title, note) {
-  return `<div class="section-heading"><h2>${title}</h2><p>${note}</p></div>`;
+function answersFor(passage) {
+  return [...passage.text.matchAll(pattern)].map((match) => match[1]);
 }
 
-function renderMultiple() {
-  const cards = multipleChoice.map((item, index) => `
-    <article class="question-card" data-kind="multiple" data-index="${index}">
-      <p class="question-title"><span class="question-number">${index + 1}.</span>${item.q}</p>
-      <div class="choices">
-        ${item.c.map((choice, choiceIndex) => `
-          <label class="choice">
-            <input type="radio" name="multiple-${index}" value="${choiceIndex}">
-            <span>${["①", "②", "③", "④"][choiceIndex]} ${choice}</span>
-          </label>`).join("")}
-      </div>
-      <p class="feedback"></p>
-    </article>`).join("");
-  document.querySelector("#multiple").innerHTML = heading("객관식", "사조의 특징과 작가·작품 연결") + cards;
+function inputWidth(answer) {
+  if (/^\d+$/.test(answer)) return Math.max(42, answer.length * 15);
+  return Math.min(190, Math.max(68, answer.length * 16));
 }
 
-function renderShort() {
-  const cards = shortAnswer.map((item, index) => `
-    <article class="question-card" data-kind="short" data-index="${index}">
-      <p class="question-title"><span class="question-number">${index + 1}.</span>${item.q}</p>
-      <input class="short-input" type="text" autocomplete="off" aria-label="${index + 1}번 답">
-      <p class="feedback"></p>
-    </article>`).join("");
-  document.querySelector("#short").innerHTML = heading("단답형", "꼭 기억해야 할 핵심 사조와 대표 화가") + cards;
+function renderText(passage, passageIndex) {
+  let blankIndex = 0;
+  return passage.text.replace(pattern, (_, answer) => {
+    const index = blankIndex++;
+    return `<input class="blank-input" type="text" inputmode="${/^\d+$/.test(answer) ? "numeric" : "text"}"
+      style="--input-width:${inputWidth(answer)}px" data-answer="${answer}"
+      aria-label="${passage.title} ${index + 1}번 빈칸" autocomplete="off">`;
+  });
 }
 
-function renderImages() {
-  const cards = imageQuestions.map((item, index) => `
-    <article class="question-card image-card" data-kind="image" data-index="${index}">
-      <img class="art-image" src="${item.img}" alt="작품 문제 ${index + 1}">
-      <div>
-        <p class="question-title"><span class="question-number">${index + 1}.</span>${item.q}</p>
-        <div class="choices">
-          ${item.c.map((choice, choiceIndex) => `
-            <label class="choice">
-              <input type="radio" name="image-${index}" value="${choiceIndex}">
-              <span>${["①", "②", "③", "④"][choiceIndex]} ${choice}</span>
-            </label>`).join("")}
-        </div>
-        <p class="feedback"></p>
-      </div>
-    </article>`).join("");
-  document.querySelector("#image").innerHTML = heading("작품·작가 객관식", "그림을 보고 올바른 작품 제목 또는 작가 고르기") + cards;
+function renderTabs() {
+  const tabs = [
+    `<button class="page-tab ${activePage === "all" ? "active" : ""}" data-page="all">전체</button>`,
+    ...pages.map((page) => `<button class="page-tab ${activePage === page ? "active" : ""}" data-page="${page}">P${page}</button>`)
+  ];
+  document.querySelector("#pageTabs").innerHTML = tabs.join("");
 }
 
-function renderAnswers() {
-  const multiple = multipleChoice.map((item) => `<li><strong>${["①", "②", "③", "④"][item.a]} ${item.c[item.a]}</strong><br><span class="answer-explanation">${item.e}</span></li>`).join("");
-  const short = shortAnswer.map((item) => `<li><strong>${item.e}</strong></li>`).join("");
-  const images = imageQuestions.map((item) => `<li><strong>${["①", "②", "③", "④"][item.a]} ${item.c[item.a]}</strong><br><span class="answer-explanation">${item.e}</span></li>`).join("");
-  document.querySelector("#answers").innerHTML = heading("정답·해설", "채점 후 틀린 문제를 사조별로 다시 확인") + `
-    <div class="answer-group"><h3>객관식</h3><ol class="answer-list">${multiple}</ol></div>
-    <div class="answer-group"><h3>단답형</h3><ol class="answer-list">${short}</ol></div>
-    <div class="answer-group"><h3>작품·작가 객관식</h3><ol class="answer-list">${images}</ol></div>`;
-}
+function renderQuiz() {
+  const visible = activePage === "all" ? passages : passages.filter((passage) => passage.page === activePage);
+  const grouped = new Map();
+  visible.forEach((passage) => {
+    if (!grouped.has(passage.page)) grouped.set(passage.page, []);
+    grouped.get(passage.page).push(passage);
+  });
 
-function answeredCount() {
-  const radios = new Set([...document.querySelectorAll('input[type="radio"]:checked')].map((input) => input.name)).size;
-  const texts = [...document.querySelectorAll(".short-input")].filter((input) => input.value.trim()).length;
-  document.querySelector("#answeredCount").textContent = radios + texts;
+  let globalIndex = 0;
+  const html = [...grouped.entries()].map(([page, pagePassages]) => {
+    const cards = pagePassages.map((passage) => {
+      const originalIndex = passages.indexOf(passage);
+      const count = answersFor(passage).length;
+      globalIndex += 1;
+      return `
+        <article class="paragraph-card" data-index="${originalIndex}">
+          <div class="card-header">
+            <h3>${globalIndex}. ${passage.title}${passage.note ? ` <small>(${passage.note})</small>` : ""}</h3>
+            <span class="blank-badge">빈칸 ${count}개</span>
+          </div>
+          <p class="passage">${renderText(passage, originalIndex)}</p>
+          <div class="card-actions">
+            <button class="check-button">정답 확인</button>
+            <button class="reset-button">다시 풀기</button>
+          </div>
+          <div class="feedback" role="status"></div>
+        </article>`;
+    }).join("");
+    return `<div class="page-heading"><h2>P${page}</h2><span>${pagePassages.length}개 문단</span></div>${cards}`;
+  }).join("");
+
+  document.querySelector("#quizList").innerHTML = html;
 }
 
 function gradeCard(card) {
-  const kind = card.dataset.kind;
-  const index = Number(card.dataset.index);
-  const feedback = card.querySelector(".feedback");
-  let correct = false;
-  let explanation = "";
+  const inputs = [...card.querySelectorAll(".blank-input")];
+  let correctCount = 0;
+  const wrongAnswers = [];
 
-  if (kind === "multiple" || kind === "image") {
-    const item = kind === "multiple" ? multipleChoice[index] : imageQuestions[index];
-    const selected = card.querySelector('input[type="radio"]:checked');
-    if (!selected) return false;
+  inputs.forEach((input, index) => {
+    const correct = normalize(input.value) === normalize(input.dataset.answer);
+    input.classList.toggle("answer-correct", correct);
+    input.classList.toggle("answer-wrong", !correct);
+    if (correct) {
+      correctCount += 1;
+    } else {
+      wrongAnswers.push(`${index + 1}번: ${input.dataset.answer}`);
+    }
+  });
 
-    correct = Number(selected.value) === item.a;
-    explanation = correct
-      ? `정답입니다. ${item.e}`
-      : `정답은 ${["①", "②", "③", "④"][item.a]} ${item.c[item.a]}입니다. ${item.e}`;
-  } else {
-    const item = shortAnswer[index];
-    const value = card.querySelector(".short-input").value;
-    if (!value.trim()) return false;
-
-    correct = isCorrectText(value, item.a);
-    explanation = correct ? "정답입니다." : `정답: ${item.e}`;
-  }
-
+  const allCorrect = correctCount === inputs.length;
   card.classList.add("graded");
-  card.classList.toggle("correct", correct);
-  card.classList.toggle("wrong", !correct);
-  feedback.textContent = `${correct ? "정답" : "오답"} · ${explanation}`;
-  return correct;
+  card.classList.toggle("correct", allCorrect);
+  card.classList.toggle("wrong", !allCorrect);
+
+  const feedback = card.querySelector(".feedback");
+  feedback.classList.toggle("correct-message", allCorrect);
+  feedback.innerHTML = allCorrect
+    ? `<strong>전부 정답입니다.</strong> ${correctCount}/${inputs.length}`
+    : `<strong>${correctCount}/${inputs.length} 정답</strong><br>틀린 빈칸 정답: ${wrongAnswers.join(" · ")}`;
+
+  updateSolved();
 }
 
-function grade() {
-  let score = 0;
-  document.querySelectorAll(".question-card").forEach((card) => {
-    if (gradeCard(card)) score += 1;
+function resetCard(card) {
+  card.classList.remove("graded", "correct", "wrong");
+  card.querySelectorAll(".blank-input").forEach((input) => {
+    input.value = "";
+    input.classList.remove("answer-correct", "answer-wrong");
   });
-
-  document.querySelector("#scoreCount").textContent = `${score}/${allQuestions.length}`;
-  const toast = document.querySelector("#resultToast");
-  toast.textContent = `채점 결과 ${score} / ${allQuestions.length}점`;
-  toast.classList.add("show");
-  setTimeout(() => toast.classList.remove("show"), 3200);
+  card.querySelector(".feedback").textContent = "";
+  updateSolved();
 }
 
-renderMultiple();
-renderShort();
-renderImages();
-renderAnswers();
+function updateSolved() {
+  document.querySelector("#solvedCount").textContent = document.querySelectorAll(".paragraph-card.graded").length;
+}
 
-document.querySelector("#totalCount").textContent = allQuestions.length;
-document.querySelector("#multipleCount").textContent = multipleChoice.length;
-document.querySelector("#shortCount").textContent = shortAnswer.length;
-document.querySelector("#imageCount").textContent = imageQuestions.length;
+document.querySelector("#paragraphCount").textContent = passages.length;
+document.querySelector("#blankCount").textContent = passages.reduce((sum, passage) => sum + answersFor(passage).length, 0);
 
-document.querySelectorAll(".tab").forEach((tab) => {
-  tab.addEventListener("click", () => {
-    document.querySelectorAll(".tab, .question-section").forEach((element) => element.classList.remove("active"));
-    tab.classList.add("active");
-    document.querySelector(`#${tab.dataset.section}`).classList.add("active");
-  });
+renderTabs();
+renderQuiz();
+
+document.querySelector("#pageTabs").addEventListener("click", (event) => {
+  const button = event.target.closest(".page-tab");
+  if (!button) return;
+  activePage = button.dataset.page === "all" ? "all" : Number(button.dataset.page);
+  renderTabs();
+  renderQuiz();
+  updateSolved();
 });
 
-document.addEventListener("input", answeredCount);
-document.addEventListener("change", (event) => {
-  if (!event.target.matches('input[type="radio"]')) return;
-  gradeCard(event.target.closest(".question-card"));
+document.querySelector("#quizList").addEventListener("click", (event) => {
+  const card = event.target.closest(".paragraph-card");
+  if (!card) return;
+  if (event.target.closest(".check-button")) gradeCard(card);
+  if (event.target.closest(".reset-button")) resetCard(card);
 });
-document.querySelector("#gradeButton").addEventListener("click", grade);
+
+document.querySelector("#quizList").addEventListener("keydown", (event) => {
+  if (event.key !== "Enter" || !event.target.matches(".blank-input")) return;
+  const card = event.target.closest(".paragraph-card");
+  const inputs = [...card.querySelectorAll(".blank-input")];
+  const current = inputs.indexOf(event.target);
+  if (current < inputs.length - 1) inputs[current + 1].focus();
+  else gradeCard(card);
+});
+
 document.querySelector("#printButton").addEventListener("click", () => window.print());
