@@ -3,6 +3,75 @@ const pages = [...new Set(passages.map((passage) => passage.page))];
 let activePage = "all";
 let activeMode = "quiz";
 
+const publicQuestions = [
+  {
+    prompt: "최규하 국무총리가 대통령에 당선된 일자(연도포함)와 대통령을 선출한 기구를 기록하시오.",
+    rows: [
+      { label: "일자", answers: ["1979년 12월 6일"] },
+      { label: "기구", answers: ["통일주체국민회의"] }
+    ]
+  },
+  {
+    prompt: "전두환 세력이 12.12군사반란 성공이후 정부와 군대 인사에 어떻게 관여했는지 기록하시오.",
+    rows: [
+      { label: "정부", answers: ["12월 14일 내각 개편에 개입"] },
+      { label: "군대", answers: ["자기 파벌 중심으로 군대 인사 단행"] }
+    ]
+  },
+  {
+    prompt: "1980년 5월 18일 발표된 '계엄포고 10호'의 주요 내용 3가지를 기록하시오.",
+    rows: [
+      { label: "주요 내용", answers: ["대학휴교", "언론 사전 검열", "집회 및 시위 금지"] }
+    ]
+  },
+  {
+    prompt: "국가보위비상대책위원회가 교육정상화를 명목으로 단행한 대표적인 정책 2가지를 모두 기록하시오.",
+    rows: [
+      { label: "정책", answers: ["과외 금지", "대입 본고사 폐지"] }
+    ]
+  },
+  {
+    prompt: "1983년 5월 18일 김영삼 선생이 단식을 시작하면서 요구한 핵심사항 2가지를 기록하시오.",
+    rows: [
+      { label: "핵심사항", answers: ["언론통제의 해제", "정치범 석방"] }
+    ]
+  },
+  {
+    prompt: "1985년 국회의원 선거과정에서 신한민주당이 쟁점으로 삼은 3가지 사안을 모두 기록하시오.",
+    rows: [
+      { label: "쟁점", answers: ["대통령 직선제 개헌", "광주항쟁 문제", "전두환 정권의 정통성"] }
+    ]
+  },
+  {
+    prompt: "1987년 대통령 선거에서 김영삼, 김대중 후보가 단일화 방식으로 각각 제안한 것을 기록하시오.",
+    rows: [
+      { label: "김영삼", answers: ["당내 경선을 통한 후보 단일화"] },
+      { label: "김대중", answers: ["전국적 지지도를 통한 후보 단일화"] }
+    ]
+  },
+  {
+    prompt: "1990년 1월 22일 3당 합당에 참여한 정당과 합당 선언 제목을 모두 기록하시오.",
+    rows: [
+      { label: "정당", answers: ["민주정의당", "통일민주당", "신민주공화당"] },
+      { label: "제목", answers: ["새로운 역사창조를 위한 공동선언"] }
+    ]
+  },
+  {
+    prompt: "제1회 전국동시지방선거가 실시된 일자(연도포함)와 지방 의결기관, 집행기관을 각각 기록하시오.",
+    rows: [
+      { label: "일자", answers: ["1995년 6월 27일"] },
+      { label: "의결기관", answers: ["지방의회"] },
+      { label: "집행기관", answers: ["지방자치단체의 장"] }
+    ]
+  },
+  {
+    prompt: "김대중 대통령 시기 공공부문개혁의 주요 목표를 3가지를 기록하시오.",
+    rows: [
+      { label: "주요 목표", answers: ["작지만 강한 정부", "경쟁과 성과원리 도입", "전자정부의 구현"] }
+    ]
+  }
+];
+
 const normalize = (value) => value
   .trim()
   .toLowerCase()
@@ -108,7 +177,51 @@ function renderStudy() {
   document.querySelector("#quizList").innerHTML = html;
 }
 
+function publicAnswerCount(question) {
+  return question.rows.reduce((sum, row) => sum + row.answers.length, 0);
+}
+
+function renderPublic() {
+  const html = publicQuestions.map((question, questionIndex) => {
+    const rows = question.rows.map((row) => {
+      const inputs = row.answers.map((answer, answerIndex) => (
+        `<input class="blank-input public-input" type="text"
+          style="--input-width:${Math.min(360, Math.max(170, answer.length * 14))}px"
+          data-answer="${answer}"
+          aria-label="${questionIndex + 1}번 ${row.label} ${answerIndex + 1}번째 정답"
+          autocomplete="off">`
+      )).join("");
+      return `
+        <div class="public-answer-row">
+          <strong class="public-label">${row.label}</strong>
+          <div class="public-inputs">${inputs}</div>
+        </div>`;
+    }).join("");
+
+    return `
+      <article class="paragraph-card public-card" data-index="public-${questionIndex}">
+        <div class="card-header">
+          <h3>${questionIndex + 1}. ${question.prompt}</h3>
+          <span class="blank-badge">정답 ${publicAnswerCount(question)}개</span>
+        </div>
+        <div class="public-answer-list">${rows}</div>
+        <div class="card-actions">
+          <button class="check-button">정답 확인</button>
+          <button class="reset-button">다시 풀기</button>
+        </div>
+        <div class="feedback" role="status"></div>
+      </article>`;
+  }).join("");
+
+  document.querySelector("#quizList").innerHTML = html;
+}
+
 function renderContent() {
+  document.querySelector("#pageTabs").hidden = activeMode === "public";
+  if (activeMode === "public") {
+    renderPublic();
+    return;
+  }
   if (activeMode === "study") {
     renderStudy();
     return;

@@ -186,6 +186,36 @@ main {
 .study-card .card-header { margin-bottom: 8px; }
 .study-card { border-left-color: var(--gold); }
 
+.public-card { border-left-color: #456c7f; }
+
+.public-answer-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.public-answer-row {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.public-label {
+  color: var(--navy);
+  font-size: 15px;
+}
+
+.public-label::after {
+  content: ":";
+}
+
+.public-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .blank-input {
   width: var(--input-width, 92px);
   max-width: 190px;
@@ -200,6 +230,12 @@ main {
   outline: none;
   text-align: center;
   line-height: 1.2;
+}
+
+.public-input {
+  flex: 0 1 var(--input-width, 240px);
+  max-width: min(100%, 360px);
+  text-align: left;
 }
 
 .blank-input:focus { border-bottom-color: var(--red); background: #fff8e8; }
@@ -254,6 +290,8 @@ main {
   .paragraph-card { padding: 18px 15px; }
   .passage { font-size: 17px; line-height: 1.95; word-break: normal; }
   .blank-input { max-width: 145px; }
+  .public-answer-row { grid-template-columns: 1fr; gap: 4px; }
+  .public-input { width: 100%; max-width: 100%; }
 }
 
 @media print {
